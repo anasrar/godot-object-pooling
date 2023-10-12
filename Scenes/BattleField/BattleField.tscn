@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://cb64c02s3o4le"]
+
+[ext_resource type="PackedScene" uid="uid://doq4tjw3wiip7" path="res://Scenes/Player/Player.tscn" id="1_5mru2"]
+[ext_resource type="Texture2D" uid="uid://b3v6bj1gp7lj5" path="res://Scenes/BattleField/Images/Arena.png" id="1_fe7xa"]
+[ext_resource type="Script" path="res://Scenes/BattleField/GDBattleField.gd" id="1_k5dbl"]
+[ext_resource type="PackedScene" uid="uid://ddms5ci7qvtpd" path="res://Scenes/Pool/Pool.tscn" id="2_g83fm"]
+[ext_resource type="PackedScene" uid="uid://bxjkvxnr2vn6d" path="res://Scenes/Enemy/Enemy.tscn" id="3_kmt6r"]
+[ext_resource type="PackedScene" uid="uid://mtoy87whuldu" path="res://Scenes/Bullet/Bullet.tscn" id="3_vo5td"]
+[ext_resource type="FontFile" uid="uid://bfehqik4xvrfy" path="res://Fonts/JetBrainsMono/JetBrainsMono-Bold.ttf" id="4_w1bog"]
+
+[sub_resource type="Theme" id="Theme_8jov6"]
+default_font = ExtResource("4_w1bog")
+default_font_size = 24
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tegae"]
+bg_color = Color(0.988235, 0.768627, 0.0980392, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Theme" id="Theme_eykhb"]
+Panel/styles/panel = SubResource("StyleBoxFlat_tegae")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruk57"]
+bg_color = Color(1, 0.419608, 0.419608, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Theme" id="Theme_q7671"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ruk57")
+
+[node name="BattleField" type="Node2D" node_paths=PackedStringArray("grid_bullets", "grid_enemies")]
+script = ExtResource("1_k5dbl")
+path_pool_enemies = NodePath("Origin/PoolEnemies")
+grid_bullets = NodePath("CanvasLayer/Control/Bullets")
+grid_enemies = NodePath("CanvasLayer/Control/Enemies")
+
+[node name="Origin" type="Node2D" parent="."]
+position = Vector2(350, 350)
+
+[node name="PoolBullets" parent="Origin" instance=ExtResource("2_g83fm")]
+initial_spawn = 20
+item = ExtResource("3_vo5td")
+
+[node name="PoolEnemies" parent="Origin" instance=ExtResource("2_g83fm")]
+initial_spawn = 20
+item = ExtResource("3_kmt6r")
+
+[node name="Arena" type="Sprite2D" parent="Origin"]
+texture = ExtResource("1_fe7xa")
+
+[node name="Player" parent="Origin" instance=ExtResource("1_5mru2")]
+path_pool_bullets = NodePath("../PoolBullets")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_top = 0.745
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.300049
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_8jov6")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0627451, 0.0666667, 0.0745098, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 54
+
+[node name="LabelEnemies" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "ENEMIES"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LabelBullets" type="Label" parent="CanvasLayer/Control/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "BULLETS"
+vertical_alignment = 1
+
+[node name="Bullets" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_eykhb")
+
+[node name="Enemies" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_q7671")
+
+[connection signal="child_order_changed" from="CanvasLayer/Control/Bullets" to="." method="_on_bullets_child_order_changed"]
+[connection signal="child_order_changed" from="CanvasLayer/Control/Enemies" to="." method="_on_enemies_child_order_changed"]

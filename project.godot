@@ -1,0 +1,48 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="ObjectPooling"
+run/main_scene="res://Scenes/Main/Main.tscn"
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Envs="res://Autoloads/Envs/Envs.tscn"
+Scenes="res://Autoloads/Scenes/Scenes.tscn"
+
+[display]
+
+window/size/viewport_width=700
+window/size/viewport_height=940
+
+[dotnet]
+
+project/assembly_name="ObjectPooling"
+
+[editor]
+
+movie_writer/movie_file="res://Renders/output.avi"
+naming/default_signal_callback_name="On{node_name}{signal_name}"
+naming/scene_name_casing=1
+
+[input]
+
+fire_bullet={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(274, 12),"global_position":Vector2(278, 55),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.0784314, 0.0823529, 0.0901961, 1)

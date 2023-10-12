@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://digm7knbg7ny3"]
+
+[ext_resource type="Script" path="res://Autoloads/Scenes/GDScenes.gd" id="1_x02od"]
+
+[node name="Scenes" type="Node"]
+script = ExtResource("1_x02od")

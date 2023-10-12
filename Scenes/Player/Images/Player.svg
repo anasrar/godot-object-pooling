@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="32"
+   height="32"
+   id="screenshot-75cb17a3-9696-809b-8003-342f8f94a411"
+   viewBox="0 0 32 32"
+   style="-webkit-print-color-adjust: exact;"
+   fill="none"
+   version="1.1"
+   sodipodi:docname="Player.svg"
+   inkscape:version="1.3 (0e150ed, 2023-07-21)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs4">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect4"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,3.5823491,0,1 @ F,0,0,1,0,3.5823491,0,1 @ F,0,1,1,0,3.5823491,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     showgrid="false"
+     inkscape:zoom="21.635036"
+     inkscape:cx="16.038799"
+     inkscape:cy="16.06191"
+     inkscape:window-width="1860"
+     inkscape:window-height="1062"
+     inkscape:window-x="48"
+     inkscape:window-y="6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="screenshot-75cb17a3-9696-809b-8003-342f8f94a411" />
+  <g
+     id="shape-75cb17a3-9696-809b-8003-342f8f94a411"
+     inkscape:label="root">
+    <defs
+       id="defs1">
+      <clipPath
+         class="frame-clip-def frame-clip"
+         id="frame-clip-75cb17a3-9696-809b-8003-342f8f94a411-rumext-id-1">
+        <rect
+           rx="0"
+           ry="0"
+           x="0"
+           y="0"
+           width="32"
+           height="32"
+           transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)"
+           id="rect1" />
+      </clipPath>
+    </defs>
+    <path
+       rx="0"
+       ry="0"
+       d="M 1.6020752,28.79585 14.397925,3.2041504 a 1.7911746,1.7911746 180 0 1 3.20415,0 L 30.397925,28.79585 A 2.2140135,2.2140135 121.71747 0 1 28.417651,32 H 3.5823491 A 2.2140135,2.2140135 58.282526 0 1 1.6020752,28.79585 Z"
+       style="fill:#ffffff;fill-opacity:1;-webkit-print-color-adjust:exact"
+       id="path3"
+       inkscape:label="path"
+       sodipodi:nodetypes="cccc"
+       inkscape:path-effect="#path-effect4"
+       inkscape:original-d="M 0,32 16,0 32,32 Z" />
+  </g>
+</svg>

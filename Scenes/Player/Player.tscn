@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://doq4tjw3wiip7"]
+
+[ext_resource type="Texture2D" uid="uid://cs7t1yu26qpbq" path="res://Scenes/Player/Images/Player.svg" id="1_23riq"]
+[ext_resource type="Script" path="res://Scenes/Player/GDPlayer.gd" id="1_gh7qf"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_gh7qf")
+
+[node name="Image" type="Sprite2D" parent="."]
+modulate = Color(0.360784, 0.486275, 0.980392, 1)
+rotation = 1.5708
+texture = ExtResource("1_23riq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+polygon = PackedVector2Array(2, -13.6, 4, -12.6, 4, -10.3, 16, 11.7, 16, 16, -16, 16, -16, 11.7, -3, -12.3, -3, -15, 2, -15)

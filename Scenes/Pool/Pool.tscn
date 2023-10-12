@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddms5ci7qvtpd"]
+
+[ext_resource type="Script" path="res://Scenes/Pool/GDPool.gd" id="1_h2pku"]
+
+[node name="Pool" type="Node2D"]
+script = ExtResource("1_h2pku")

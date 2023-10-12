@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqj02hy6lb2s0"]
+
+[ext_resource type="Script" path="res://Scenes/Main/GDMain.gd" id="1_wro8r"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_wro8r")
+scene = "res://Scenes/BattleField/BattleField.tscn"

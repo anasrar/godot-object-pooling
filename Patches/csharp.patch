@@ -1,0 +1,174 @@
+diff --git a/Autoloads/Envs/Envs.tscn b/Autoloads/Envs/Envs.tscn
+index d6f5103..a915137 100644
+--- a/Autoloads/Envs/Envs.tscn
++++ b/Autoloads/Envs/Envs.tscn
+@@ -1,7 +1,7 @@
+ [gd_scene load_steps=2 format=3 uid="uid://bk5x5ix8wtbgw"]
+ 
+-[ext_resource type="Script" path="res://Autoloads/Envs/GDEnvs.gd" id="1_qm0nf"]
++[ext_resource type="Script" path="res://Autoloads/Envs/Envs.cs" id="1_cbt24"]
+ 
+ [node name="Envs" type="Node"]
+-script = ExtResource("1_qm0nf")
+-pooling = 1
++script = ExtResource("1_cbt24")
++Pooling = 0
+diff --git a/Autoloads/Scenes/Scenes.tscn b/Autoloads/Scenes/Scenes.tscn
+index 8f21d74..f0db9d3 100644
+--- a/Autoloads/Scenes/Scenes.tscn
++++ b/Autoloads/Scenes/Scenes.tscn
+@@ -1,6 +1,6 @@
+ [gd_scene load_steps=2 format=3 uid="uid://digm7knbg7ny3"]
+ 
+-[ext_resource type="Script" path="res://Autoloads/Scenes/GDScenes.gd" id="1_x02od"]
++[ext_resource type="Script" path="res://Autoloads/Scenes/Scenes.cs" id="1_ydino"]
+ 
+ [node name="Scenes" type="Node"]
+-script = ExtResource("1_x02od")
++script = ExtResource("1_ydino")
+diff --git a/Scenes/BattleField/BattleField.tscn b/Scenes/BattleField/BattleField.tscn
+index bfddc43..f406c79 100644
+--- a/Scenes/BattleField/BattleField.tscn
++++ b/Scenes/BattleField/BattleField.tscn
+@@ -1,8 +1,8 @@
+ [gd_scene load_steps=13 format=3 uid="uid://cb64c02s3o4le"]
+ 
+ [ext_resource type="PackedScene" uid="uid://doq4tjw3wiip7" path="res://Scenes/Player/Player.tscn" id="1_5mru2"]
++[ext_resource type="Script" path="res://Scenes/BattleField/BattleField.cs" id="1_bwttc"]
+ [ext_resource type="Texture2D" uid="uid://b3v6bj1gp7lj5" path="res://Scenes/BattleField/Images/Arena.png" id="1_fe7xa"]
+-[ext_resource type="Script" path="res://Scenes/BattleField/GDBattleField.gd" id="1_k5dbl"]
+ [ext_resource type="PackedScene" uid="uid://ddms5ci7qvtpd" path="res://Scenes/Pool/Pool.tscn" id="2_g83fm"]
+ [ext_resource type="PackedScene" uid="uid://bxjkvxnr2vn6d" path="res://Scenes/Enemy/Enemy.tscn" id="3_kmt6r"]
+ [ext_resource type="PackedScene" uid="uid://mtoy87whuldu" path="res://Scenes/Bullet/Bullet.tscn" id="3_vo5td"]
+@@ -32,28 +32,28 @@ corner_radius_bottom_left = 16
+ [sub_resource type="Theme" id="Theme_q7671"]
+ Panel/styles/panel = SubResource("StyleBoxFlat_ruk57")
+ 
+-[node name="BattleField" type="Node2D" node_paths=PackedStringArray("grid_bullets", "grid_enemies")]
+-script = ExtResource("1_k5dbl")
+-path_pool_enemies = NodePath("Origin/PoolEnemies")
+-grid_bullets = NodePath("CanvasLayer/Control/Bullets")
+-grid_enemies = NodePath("CanvasLayer/Control/Enemies")
++[node name="BattleField" type="Node2D" node_paths=PackedStringArray("GridBullets", "GridEnemies")]
++script = ExtResource("1_bwttc")
++PathPoolEnemies = NodePath("Origin/PoolEnemies")
++GridBullets = NodePath("CanvasLayer/Control/Bullets")
++GridEnemies = NodePath("CanvasLayer/Control/Enemies")
+ 
+ [node name="Origin" type="Node2D" parent="."]
+ position = Vector2(350, 350)
+ 
+ [node name="PoolBullets" parent="Origin" instance=ExtResource("2_g83fm")]
+-initial_spawn = 20
+-item = ExtResource("3_vo5td")
++InitialSpawn = 20
++Item = ExtResource("3_vo5td")
+ 
+ [node name="PoolEnemies" parent="Origin" instance=ExtResource("2_g83fm")]
+-initial_spawn = 20
+-item = ExtResource("3_kmt6r")
++InitialSpawn = 20
++Item = ExtResource("3_kmt6r")
+ 
+ [node name="Arena" type="Sprite2D" parent="Origin"]
+ texture = ExtResource("1_fe7xa")
+ 
+ [node name="Player" parent="Origin" instance=ExtResource("1_5mru2")]
+-path_pool_bullets = NodePath("../PoolBullets")
++PathPoolBullets = NodePath("../PoolBullets")
+ 
+ [node name="CanvasLayer" type="CanvasLayer" parent="."]
+ 
+@@ -126,5 +126,5 @@ grow_horizontal = 2
+ grow_vertical = 2
+ theme = SubResource("Theme_q7671")
+ 
+-[connection signal="child_order_changed" from="CanvasLayer/Control/Bullets" to="." method="_on_bullets_child_order_changed"]
+-[connection signal="child_order_changed" from="CanvasLayer/Control/Enemies" to="." method="_on_enemies_child_order_changed"]
++[connection signal="child_order_changed" from="CanvasLayer/Control/Bullets" to="." method="OnBulletsChildOrderChanged"]
++[connection signal="child_order_changed" from="CanvasLayer/Control/Enemies" to="." method="OnEnemiesChildOrderChanged"]
+diff --git a/Scenes/Bullet/Bullet.tscn b/Scenes/Bullet/Bullet.tscn
+index 5f72b86..bb894d1 100644
+--- a/Scenes/Bullet/Bullet.tscn
++++ b/Scenes/Bullet/Bullet.tscn
+@@ -1,13 +1,13 @@
+ [gd_scene load_steps=4 format=3 uid="uid://mtoy87whuldu"]
+ 
+-[ext_resource type="Script" path="res://Scenes/Bullet/GDBullet.gd" id="1_3auyg"]
++[ext_resource type="Script" path="res://Scenes/Bullet/Bullet.cs" id="1_iaxn2"]
+ [ext_resource type="Texture2D" uid="uid://b4ig1wsyay8n2" path="res://Scenes/Bullet/Images/Bullet.svg" id="1_tqaut"]
+ 
+ [sub_resource type="CircleShape2D" id="CircleShape2D_hkwjw"]
+ radius = 8.0
+ 
+ [node name="Bullet" type="Area2D"]
+-script = ExtResource("1_3auyg")
++script = ExtResource("1_iaxn2")
+ 
+ [node name="Image" type="Sprite2D" parent="."]
+ modulate = Color(0.988235, 0.768627, 0.0980392, 1)
+diff --git a/Scenes/Enemy/Enemy.tscn b/Scenes/Enemy/Enemy.tscn
+index bd8b146..b48df1c 100644
+--- a/Scenes/Enemy/Enemy.tscn
++++ b/Scenes/Enemy/Enemy.tscn
+@@ -1,13 +1,13 @@
+ [gd_scene load_steps=4 format=3 uid="uid://bxjkvxnr2vn6d"]
+ 
+-[ext_resource type="Script" path="res://Scenes/Enemy/GDEnemy.gd" id="1_gmu06"]
++[ext_resource type="Script" path="res://Scenes/Enemy/Enemy.cs" id="1_aihqc"]
+ [ext_resource type="Texture2D" uid="uid://c27dh7ht2ew5l" path="res://Scenes/Enemy/Images/Enemy.svg" id="1_sex7p"]
+ 
+ [sub_resource type="CircleShape2D" id="CircleShape2D_e0hv4"]
+ radius = 15.0
+ 
+ [node name="Enemy" type="Area2D"]
+-script = ExtResource("1_gmu06")
++script = ExtResource("1_aihqc")
+ 
+ [node name="Image" type="Sprite2D" parent="."]
+ modulate = Color(1, 0.419608, 0.419608, 1)
+diff --git a/Scenes/Main/Main.tscn b/Scenes/Main/Main.tscn
+index b1fb791..30cde19 100644
+--- a/Scenes/Main/Main.tscn
++++ b/Scenes/Main/Main.tscn
+@@ -1,7 +1,7 @@
+ [gd_scene load_steps=2 format=3 uid="uid://bqj02hy6lb2s0"]
+ 
+-[ext_resource type="Script" path="res://Scenes/Main/GDMain.gd" id="1_wro8r"]
++[ext_resource type="Script" path="res://Scenes/Main/Main.cs" id="1_vvqjk"]
+ 
+ [node name="Main" type="Node"]
+-script = ExtResource("1_wro8r")
+-scene = "res://Scenes/BattleField/BattleField.tscn"
++script = ExtResource("1_vvqjk")
++Scene = "res://Scenes/BattleField/BattleField.tscn"
+diff --git a/Scenes/Player/Player.tscn b/Scenes/Player/Player.tscn
+index 784bb55..2bd71e7 100644
+--- a/Scenes/Player/Player.tscn
++++ b/Scenes/Player/Player.tscn
+@@ -1,10 +1,10 @@
+ [gd_scene load_steps=3 format=3 uid="uid://doq4tjw3wiip7"]
+ 
+ [ext_resource type="Texture2D" uid="uid://cs7t1yu26qpbq" path="res://Scenes/Player/Images/Player.svg" id="1_23riq"]
+-[ext_resource type="Script" path="res://Scenes/Player/GDPlayer.gd" id="1_gh7qf"]
++[ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_u7t57"]
+ 
+ [node name="Player" type="CharacterBody2D"]
+-script = ExtResource("1_gh7qf")
++script = ExtResource("1_u7t57")
+ 
+ [node name="Image" type="Sprite2D" parent="."]
+ modulate = Color(0.360784, 0.486275, 0.980392, 1)
+diff --git a/Scenes/Pool/Pool.tscn b/Scenes/Pool/Pool.tscn
+index 791eed1..18957f0 100644
+--- a/Scenes/Pool/Pool.tscn
++++ b/Scenes/Pool/Pool.tscn
+@@ -1,6 +1,6 @@
+ [gd_scene load_steps=2 format=3 uid="uid://ddms5ci7qvtpd"]
+ 
+-[ext_resource type="Script" path="res://Scenes/Pool/GDPool.gd" id="1_h2pku"]
++[ext_resource type="Script" path="res://Scenes/Pool/Pool.cs" id="1_jwvbr"]
+ 
+ [node name="Pool" type="Node2D"]
+-script = ExtResource("1_h2pku")
++script = ExtResource("1_jwvbr")

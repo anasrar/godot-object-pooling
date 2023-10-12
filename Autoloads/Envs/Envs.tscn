@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk5x5ix8wtbgw"]
+
+[ext_resource type="Script" path="res://Autoloads/Envs/GDEnvs.gd" id="1_qm0nf"]
+
+[node name="Envs" type="Node"]
+script = ExtResource("1_qm0nf")
+pooling = 1
